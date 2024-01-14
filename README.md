@@ -1,3 +1,3 @@
 # sqfllite_app
 
-A new Flutter project.
+contributing to my practice for this package.
