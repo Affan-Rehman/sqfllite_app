@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sqflite_app/globals.dart';
@@ -72,7 +74,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
             height: 20,
           ),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 if (!(nameController.text == "") ||
                     !(descController.text == "")) {
                   DateTime now = DateTime.now();
@@ -87,6 +89,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                     notes.length + 1,
                   );
                   notes.add(note);
+                  await databaseHelper.insertNote(note);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('Saved Sucessfully!'),

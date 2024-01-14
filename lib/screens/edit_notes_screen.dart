@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sqflite_app/globals.dart';
 import 'package:sqflite_app/models/notes.dart';
 
 // ignore: must_be_immutable
@@ -75,7 +76,7 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
             height: 20,
           ),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 if (!(nameController.text == "") ||
                     !(descController.text == "")) {
                   widget.note.priority = priority;
@@ -86,6 +87,7 @@ class _EditNotesScreenState extends State<EditNotesScreen> {
                       content: Text('Saved Sucessfully!'),
                     ),
                   );
+                  await databaseHelper.updateNote(widget.note);
                 } else {
                   if (!(nameController.text == "") ||
                       !(descController.text == "")) {
