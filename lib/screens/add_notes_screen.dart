@@ -79,8 +79,13 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
 
                   // Format the date using the intl package
                   String formattedDate = DateFormat('yyyy-MM-dd').format(now);
-                  Notes note = Notes(formattedDate, nameController.text,
-                      descController.text, priority);
+                  Notes note = Notes(
+                    formattedDate,
+                    nameController.text,
+                    descController.text,
+                    priority,
+                    notes.length + 1,
+                  );
                   notes.add(note);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
